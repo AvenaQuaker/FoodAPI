@@ -24,7 +24,7 @@ const swaggerOptions = {
             },
         ],
     },
-    apis: ["./Routes/*.js"],
+    apis: ["./Models/*.js"],
 };
 
 //Consumir Documentacion

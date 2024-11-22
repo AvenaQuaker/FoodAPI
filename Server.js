@@ -42,12 +42,12 @@ app.use(AuthRouter());
 // Rutas principales
 app.use(crearRouter({ foodModel: FoodModel }));
 
-// app.use("/Doc", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+app.use("/Doc", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 //Obtener el objeto de Swagger
-// app.get("/Spec", (req, res) => {
-//     res.json(swaggerDocs);
-// });
+app.get("/Spec", (req, res) => {
+    res.json(swaggerDocs);
+});
 
 // Inicialización del servidor
 const PORT = process.env.PORT ?? 1234;
