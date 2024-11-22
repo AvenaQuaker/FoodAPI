@@ -11,11 +11,19 @@ import MongoDB from "./Config/MongoDB.js";
 import swaggerUI from "swagger-ui-express";
 import { credentials } from "./Config/credentials.js";
 import swaggerDocs from "./Config/swagger.js";
+import { SwaggerTheme, SwaggerThemeNameEnum } from "swagger-themes";
 
 // Configuración de Express
 const app = express();
 app.use(express.json());
 app.use(miCors());
+
+// SwaggerTheme
+const theme = new SwaggerTheme();
+const options = {
+    explorer: true,
+    customCss: theme.getBuffer(SwaggerThemeNameEnum.DARK),
+};
 
 // Conexión a MongoDB
 MongoDB();
@@ -42,7 +50,7 @@ app.use(AuthRouter());
 // Rutas principales
 app.use(crearRouter({ foodModel: FoodModel }));
 
-app.use("/Doc", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+app.use("/Doc", swaggerUI.serve, swaggerUI.setup(swaggerDocs, options));
 
 //Obtener el objeto de Swagger
 app.get("/Spec", (req, res) => {
