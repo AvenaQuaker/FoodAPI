@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MongoDB = async () => {
+const setupMongoDB = async () => {
     try {
         const uri =
             "mongodb+srv://Jaime:sonic123%40@clustermongo.ial5c.mongodb.net/API-REST?retryWrites=true&w=majority&appName=ClusterMONGO";
@@ -17,4 +17,4 @@ const MongoDB = async () => {
     }
 };
 
-export default MongoDB;
+export default setupMongoDB;

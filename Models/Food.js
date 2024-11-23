@@ -179,7 +179,7 @@ export class FoodModel {
      */
     static async createFood({ food }) {
         const dishes = await Dish.find();
-        const KeyINT = dishes.length + 1;
+        const KeyINT = dishes[dishes.length - 1].Key + 1;
 
         const dish = {
             Key: KeyINT,
@@ -190,7 +190,7 @@ export class FoodModel {
         };
 
         const result = await Dish.insertMany(dish);
-        return { Dish: dish, resultado: result };
+        return dish;
     }
 
     /**
@@ -276,7 +276,7 @@ export class FoodModel {
                 { Key: food.Key },
                 { $set: dish }
             );
-            return { success: true, newDish: dish, resultado: result };
+            return { success: true, Dish: dish };
         }
     }
 
@@ -330,7 +330,7 @@ export class FoodModel {
             };
         } else {
             const result = await Dish.deleteOne({ Key: Key });
-            return { success: true, Dish: dish, resultado: result };
+            return { success: true, Dish: dish };
         }
     }
 }

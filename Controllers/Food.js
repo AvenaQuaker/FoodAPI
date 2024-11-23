@@ -37,7 +37,10 @@ export class FoodController {
                 const dish = await this.foodModel.createFood({
                     food: req.body,
                 });
-                res.status(201).json(dish);
+                res.status(201).json({
+                    message: "Se ha creado el Nuevo Platilo",
+                    dish,
+                });
             } else {
                 res.status(400).json(result.error);
             }
@@ -51,7 +54,10 @@ export class FoodController {
             const result = await this.foodModel.updateFood({ food: req.body });
 
             if (result.success) {
-                res.status(200).json(result);
+                res.status(200).json({
+                    message: "Se ah Actualizado el Platillo",
+                    result,
+                });
             } else {
                 res.status(404).json(result);
             }
@@ -66,7 +72,10 @@ export class FoodController {
             const result = await this.foodModel.deleteFood(key);
 
             if (result.success) {
-                res.status(200).json(result);
+                res.status(200).json({
+                    message: "Se ah Borrado el Platillo",
+                    result,
+                });
             } else {
                 res.status(404).json(result);
             }
