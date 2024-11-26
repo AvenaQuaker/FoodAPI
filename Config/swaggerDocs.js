@@ -4,19 +4,14 @@ import swaggerUI from "swagger-ui-express";
 //Swagger
 const swaggerOptions = {
     swaggerDefinition: {
+        openapi: "3.0.0",
         info: {
             title: "Dishes-API Documentation",
-            description: "API REST for Gastronomy purposes",
+            description: `Esta API está diseñada para gestionar información sobre platillos. Permite crear, obtener, actualizar y eliminar platillos en una base de datos.
+                \nLink del Repositorio: https://github.com/AvenaQuaker/FoodAPI`,
             version: "1.0.0",
-            license: {
-                name: "Licensed Under MIT",
-                url: "https://spdx.org/licenses/MIT.html",
-            },
-            contact: {
-                name: "JSONPlaceholder",
-                url: "https://jsonplaceholder.typicode.com",
-            },
         },
+        components: {},
         servers: [
             {
                 url: "http://localhost:1234",

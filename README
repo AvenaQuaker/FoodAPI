@@ -1,0 +1,49 @@
+# API de Comidas
+
+Esta API está diseñada para gestionar información sobre platillos. Permite crear, obtener, actualizar y eliminar platillos en una base de datos.
+
+## Funcionalidades
+
+La API proporciona las siguientes funcionalidades:
+
+-   **GET** `/Foods`: Obtiene todos los platillos.
+-   **POST** `/Foods`: Crea un nuevo platillo.
+-   **PATCH** `/Foods`: Actualiza un platillo existente.
+-   **GET** `/Foods/{key}`: Obtiene un platillo específico por su clave (ID).
+-   **DELETE** `/Foods/{key}`: Elimina un platillo por su clave (ID).
+
+## Requisitos
+
+-   **Node.js**: La API está construida sobre Node.js, por lo que necesitas tenerlo instalado para ejecutar el servidor.
+-   **MongoDB**: Se requiere una base de datos MongoDB para almacenar la información de los platillos.
+
+## Instalación
+
+1. **Clonar el repositorio**
+
+    ```bash
+    git clone https://github.com/tu-usuario/comida-api.git
+    cd comida-api
+    ```
+
+2. **Instalar dependencias**
+
+    Instalar las dependencias necesarias con npm:
+
+    ```bash
+    npm install
+    ```
+
+3. **Configuración del entorno**
+
+    Asegúrate de tener una instancia de MongoDB corriendo y configura la URL de la base de datos en el archivo `.env` (o el archivo de configuración correspondiente).
+
+4. **Iniciar el servidor**
+
+    Para iniciar el servidor, usa el siguiente comando:
+
+    ```bash
+    npm start
+    ```
+
+    El servidor estará corriendo en `http://localhost:1234`.

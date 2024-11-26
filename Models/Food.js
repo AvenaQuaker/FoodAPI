@@ -6,6 +6,33 @@ import Dish from "../Models/Dishes.js";
  *   name: Foods
  *   description: API para gestionar los platillos.
  */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Dish:
+ *       type: object
+ *       properties:
+ *         Key:
+ *           type: integer
+ *           description: Clave única del platillo.
+ *         Nombre:
+ *           type: string
+ *           description: Nombre del platillo.
+ *         Origen:
+ *           type: string
+ *           description: Origen del platillo.
+ *         Ingredientes:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Lista de ingredientes del platillo.
+ *         Imagen:
+ *           type: string
+ *           description: URL de la imagen del platillo.
+ */
+
 export class FoodModel {
     /**
      * @swagger
@@ -21,25 +48,7 @@ export class FoodModel {
      *             schema:
      *               type: array
      *               items:
-     *                 type: object
-     *                 properties:
-     *                   Key:
-     *                     type: integer
-     *                     description: Clave única del platillo.
-     *                   Nombre:
-     *                     type: string
-     *                     description: Nombre del platillo.
-     *                   Origen:
-     *                     type: string
-     *                     description: Origen del platillo.
-     *                   Ingredientes:
-     *                     type: array
-     *                     items:
-     *                       type: string
-     *                     description: Ingredientes del platillo.
-     *                   Imagen:
-     *                     type: string
-     *                     description: URL de la imagen del platillo.
+     *                 $ref: '#/components/schemas/Dish'
      */
     static async getFoods() {
         try {
@@ -69,14 +78,7 @@ export class FoodModel {
      *         content:
      *           application/json:
      *             schema:
-     *               type: object
-     *               properties:
-     *                 success:
-     *                   type: boolean
-     *                   description: Estado de la búsqueda.
-     *                 Dish:
-     *                   type: object
-     *                   description: Información del platillo encontrado.
+     *               $ref: '#/components/schemas/Dish'
      *       404:
      *         description: Platillo no encontrado.
      *         content:
@@ -96,7 +98,7 @@ export class FoodModel {
         if (dish.length === 0) {
             return {
                 success: false,
-                message: "No he se ha encontrado nada",
+                message: "No se ha encontrado nada",
             };
         } else {
             return { success: true, Dish: dish };
@@ -110,72 +112,34 @@ export class FoodModel {
      *     summary: Crea un nuevo platillo.
      *     tags: [Foods]
      *     requestBody:
+     *       description: Datos del nuevo platillo.
      *       required: true
      *       content:
      *         application/json:
      *           schema:
      *             type: object
-     *             required:
-     *               - Nombre
-     *               - Origen
-     *               - Ingredientes
-     *               - Imagen
      *             properties:
      *               Nombre:
      *                 type: string
      *                 description: Nombre del platillo.
-     *                 example: "Tacos al Pastor"
      *               Origen:
      *                 type: string
      *                 description: Origen del platillo.
-     *                 example: "México"
      *               Ingredientes:
      *                 type: array
      *                 items:
      *                   type: string
      *                 description: Lista de ingredientes del platillo.
-     *                 example: ["Carne de cerdo", "Piña", "Tortilla", "Cilantro", "Cebolla"]
      *               Imagen:
      *                 type: string
      *                 description: URL de la imagen del platillo.
-     *                 example: "https://example.com/tacos.jpg"
      *     responses:
      *       201:
      *         description: Platillo creado exitosamente.
      *         content:
      *           application/json:
      *             schema:
-     *               type: object
-     *               properties:
-     *                 Dish:
-     *                   type: object
-     *                   description: Objeto del platillo creado.
-     *                   properties:
-     *                     Key:
-     *                       type: integer
-     *                       description: Clave única del platillo.
-     *                       example: 1
-     *                     Nombre:
-     *                       type: string
-     *                       description: Nombre del platillo.
-     *                       example: "Tacos al Pastor"
-     *                     Origen:
-     *                       type: string
-     *                       description: Origen del platillo.
-     *                       example: "México"
-     *                     Ingredientes:
-     *                       type: array
-     *                       items:
-     *                         type: string
-     *                       description: Lista de ingredientes del platillo.
-     *                       example: ["Carne de cerdo", "Piña", "Tortilla", "Cilantro", "Cebolla"]
-     *                     Imagen:
-     *                       type: string
-     *                       description: URL de la imagen del platillo.
-     *                       example: "https://example.com/tacos.jpg"
-     *                 resultado:
-     *                   type: object
-     *                   description: Resultado de la operación.
+     *               $ref: '#/components/schemas/Dish'
      */
     static async createFood({ food }) {
         const dishes = await Dish.find();
@@ -204,45 +168,14 @@ export class FoodModel {
      *       content:
      *         application/json:
      *           schema:
-     *             type: object
-     *             required:
-     *               - Key
-     *               - Nombre
-     *               - Origen
-     *               - Ingredientes
-     *               - Imagen
-     *             properties:
-     *               Key:
-     *                 type: integer
-     *                 description: Clave única del platillo.
-     *               Nombre:
-     *                 type: string
-     *                 description: Nuevo nombre del platillo.
-     *               Origen:
-     *                 type: string
-     *                 description: Nuevo origen del platillo.
-     *               Ingredientes:
-     *                 type: array
-     *                 items:
-     *                   type: string
-     *                 description: Nuevos ingredientes del platillo.
-     *               Imagen:
-     *                 type: string
-     *                 description: Nueva URL de la imagen del platillo.
+     *             $ref: '#/components/schemas/Dish'
      *     responses:
      *       200:
      *         description: Platillo actualizado exitosamente.
      *         content:
      *           application/json:
      *             schema:
-     *               type: object
-     *               properties:
-     *                 success:
-     *                   type: boolean
-     *                 newDish:
-     *                   type: object
-     *                 resultado:
-     *                   type: object
+     *               $ref: '#/components/schemas/Dish'
      *       404:
      *         description: Platillo no encontrado.
      *         content:
@@ -299,14 +232,7 @@ export class FoodModel {
      *         content:
      *           application/json:
      *             schema:
-     *               type: object
-     *               properties:
-     *                 success:
-     *                   type: boolean
-     *                 Dish:
-     *                   type: object
-     *                 resultado:
-     *                   type: object
+     *               $ref: '#/components/schemas/Dish'
      *       404:
      *         description: Platillo no encontrado.
      *         content:
